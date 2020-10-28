@@ -33,7 +33,7 @@ transmission, doors, seats, area_list, emissions, annual_tax, url, car_id, engin
 
 try:
 
-    for i in range(50):
+    for i in range(max_pages):
         
         print('page:',i+1)
         list_page = requests.get("https://www.autotrader.co.uk/car-search?postcode=E1%206AN&year-to=2020&include-delivery-option=on&onesearchad=Used&onesearchad=Nearly%20New&onesearchad=New&advertising-location=at_cars&page="+str(i+1), headers=headers)

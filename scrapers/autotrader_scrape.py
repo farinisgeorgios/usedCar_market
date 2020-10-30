@@ -21,6 +21,7 @@ def scrape_autotrader():
                                 'fuel_type','consumption','engine_size', 'engine_power','transmission','doors', 'extras',
                                 'seats','area', 'latLong','emissions','annual_tax','url'])
 
+
     brands = pd.read_csv('brands.csv')
     brands_list = ["".join(x) for x in brands.values]
     
@@ -58,9 +59,10 @@ def scrape_autotrader():
                         usedCarsdf_return = getCarsFromAllPages(year_link, year_max_pages, usedCarsdf)
                         usedCarsdf = usedCarsdf.append(usedCarsdf_return)
             else:
-                usedCarsdf_return = getCarsFromAllPages(brand_max_pages, brand_max_pages, usedCarsdf)
+                usedCarsdf_return = getCarsFromAllPages(brand_link, brand_max_pages, usedCarsdf)
                 usedCarsdf = usedCarsdf.append(usedCarsdf_return)
     finally:
-        usedCarsdf.to_csv ("usedCars.csv", index = False, header=True)
+        usedCarsdf = usedCarsdf.drop_duplicates(subset=["car_id"])
+        usedCarsdf.to_csv ("usedCars2.csv", index = False, header=True)
         
 
